@@ -14,7 +14,6 @@ jobs:
         run: mvn test -DskipTests=false -Dgroups=slow
       - name: Merge to release
         run: | 
-          pwd
           git checkout ${GITHUB_REF#refs/heads/}
           git rebase origin/release
           git branch release
