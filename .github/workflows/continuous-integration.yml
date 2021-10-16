@@ -1,0 +1,20 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - "ready/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{hemmelig}}
+
+      - name: Compile
+        run: mvn install
+
