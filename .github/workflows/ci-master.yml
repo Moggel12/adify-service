@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test (slow)
+        run: mvn test -DskipTests=false -Dgroups=slow
+      - name: Merge to release
+        run: | 
+          git checkout ${GITHUB_REF#refs/heads/}
+          git rebase origin/release
+          git branch release
+          git push origin release:release
