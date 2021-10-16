@@ -15,6 +15,6 @@ jobs:
       - name: Merge to release
         run: | 
           git checkout ${GITHUB_REF#refs/heads/}
-          git rebase origin/release
+          git rebase origin/master
           git branch release
-          git push origin release:release
+          git push origin master:release
